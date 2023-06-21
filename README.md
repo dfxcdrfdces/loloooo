@@ -1,3 +1,5 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("High Efforts GUI (click the three dots on the side of the buttons)", "Midnight")
 local bindable
 local lr = game.ReplicatedStorage.GameData.LatestRoom
  
@@ -1873,3 +1875,17 @@ spawn(function()
 	end
 end)
 
+local Credits = Window:NewTab("Credits")
+local CreditSection = Credits:NewSection("Credits yayyy")
+CreditSection:NewButton("lol", "Main Modeler/Artist")
+CreditSection:NewButton("lol", "Main Coder")
+CreditSection:NewButton("lol ", "lol")
+CreditSection:NewButton("Make sure to check out the terms and agreements!!!!!")
+
+local Rules = Window:NewTab("Terms and conditions")
+local RulesSection = Rules:NewSection("Terms!!")
+RulesSection:NewButton("Rule 1:", "you may not reupload these our permission ")
+RulesSection:NewButton("Rule 2:", "Do not use to spread misinformation")
+RulesSection:NewButton("Rule 3 ", "Make sure to credit the creators!")
+RulesSection:NewButton("Rule 4:", " You may not use these in any unofficial GUI without our full permission")
+RulesSection:NewButton("Rule 5:", " Have fun!!!!")
