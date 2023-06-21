@@ -1,41 +1,39 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("High Efforts GUI (click the three dots on the side of the buttons)", "Midnight")
+
 local bindable
 local lr = game.ReplicatedStorage.GameData.LatestRoom
- 
-local function GetCurrentRoom()
-    return workspace.CurrentRooms:WaitForChild(tostring(lr.Value + 1), 5)
-end
- 
-local function Convert(room)
-    local noder = room:WaitForChild("PathfindNodes", 2):Clone()
-    noder.Parent = room
-    noder.Name = "Nodes"
- 
-    local Goober = Instance.new("StringValue", room)
-    Goober.Name = "gobble ur balls L splash"
-    Goober.Value = "seriously do it now loser"
- 
-    warn("Converted "..room.Name.." to support node system")
- 
-    local A = room:WaitForChild("RoomEntrance", .5):Clone()
-    A.Parent = room
-    A.Name = "RoomStart"
- 
-    local B = room:WaitForChild("RoomExit", .5):Clone()
-    B.Parent = room
-    B.Name = "RoomEnd"
-end
- 
-bindable = workspace.CurrentRooms.ChildAdded:Connect(function()
-    local room = GetCurrentRoom()
-    Convert(room)
-end)
- 
-Convert(GetCurrentRoom())
- 
-warn("Executed entity fixer, made by that one crow man who also happens to possess a gun lol")
 
+local function GetCurrentRoom()
+	return workspace.CurrentRooms:WaitForChild(tostring(lr.Value + 1), 5)
+end
+
+local function Convert(room)
+	local noder = room:WaitForChild("PathfindNodes", 2):Clone()
+	noder.Parent = room
+	noder.Name = "Nodes"
+
+	local Goober = Instance.new("StringValue", room)
+	Goober.Name = "gobble ur balls L splash"
+	Goober.Value = "seriously do it now loser"
+
+	warn("Converted "..room.Name.." to support node system")
+
+	local A = room:WaitForChild("RoomEntrance", .5):Clone()
+	A.Parent = room
+	A.Name = "RoomStart"
+
+	local B = room:WaitForChild("RoomExit", .5):Clone()
+	B.Parent = room
+	B.Name = "RoomEnd"
+end
+
+bindable = workspace.CurrentRooms.ChildAdded:Connect(function()
+	local room = GetCurrentRoom()
+	Convert(room)
+end)
+
+Convert(GetCurrentRoom())
+
+warn("Executed entity fixer, made by that one crow man who also happens to possess a gun lol")
 
 
 
@@ -607,7 +605,7 @@ firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent
 			local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
 			-- Create entity
 			local entity = Creator.createEntity({
-				Model = 13731381332,
+				Model = "13731381332",
 				Speed = 350,
 				DelayTime = 3,
 				HeightOffset = 0.5,
@@ -916,7 +914,6 @@ firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent
 			if workspace.Ambience_Seek.Playing == true then
 				continue
 			end
-			game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
 			local killed = false
 			local ReSt = game:GetService("ReplicatedStorage")
 			local Plr = game.Players.LocalPlayer
@@ -1122,6 +1119,7 @@ firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent
 										game.TweenService:Create(static,TweenInfo.new(1),{BackgroundTransparency = 1,ImageTransparency = 1}):Play()
 										game.TweenService:Create(gui.Rebound,TweenInfo.new(0.3),{ImageTransparency = 1}):Play()
 										wait(1)
+                                        											Plr.Character:FindFirstChildWhichIsA("Humanoid"):TakeDamage(100)
 										JSSOUND:Destroy()
 										gui:Destroy()
 									end
@@ -1187,6 +1185,7 @@ firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent
 				Snd.Volume = 7
 				Snd:Play()
 
+
 				local Reboundcolor = Instance.new("ColorCorrectionEffect",game.Lighting) game.Debris:AddItem(Reboundcolor,24)
 				Reboundcolor.Name = "Warn"
 				Reboundcolor.TintColor = Color3.fromRGB(65, 138, 255) Reboundcolor.Saturation = -0.7 Reboundcolor.Contrast = 0.2
@@ -1228,8 +1227,8 @@ firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent
 			pcall(Rebound)
 		end
 	end)
-while true do
-    wait(139)
+	 while true do
+	 wait(233)
 			local killed = false
 			local Plr = game.Players.LocalPlayer
 			local ReSt = game.ReplicatedStorage
@@ -1394,7 +1393,8 @@ while true do
 									ripperscare.CanCollide = false
 									char:FindFirstChild("HumanoidRootPart").Anchored = false
 									v.Character:FindFirstChildWhichIsA("Humanoid"):TakeDamage(100)
-									DEATHMESSAGE({"You died to who you call Ripper...","You can tell his presence by the lights and his scream.","Hide when he does this!"},"Ripper")
+											ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = "Ripper"
+											firesignal(game.ReplicatedStorage.Bricks.DeathHint.OnClientEvent, {"You died to who you call Ripper...","is spawn...","Hide when this happens!"})
 								end
 								coroutine.wrap(GJQAHX_fake_script)()
 
@@ -1483,9 +1483,10 @@ while true do
 
 
 			pcall(THEHORROR)
+end
 	local gotshocker = false
 	spawn(function()
-		while wait(math.random(6,100)) do
+		while wait(math.random(6,93 )) do
 			local killed = false
 			local ReSt = game:GetService("ReplicatedStorage")
 			local Plr = game.Players.LocalPlayer
@@ -1763,129 +1764,4 @@ while true do
 		end
 	end)
 end)
-spawn(function()
-	------------------------------------------Silence
-	getgenv().death = false
-	while true do
-		wait(560)
-		if workspace.Ambience_Seek.Playing == true then
-			continue
-		end
-					if workspace.Ambience_Figure.Playing == true then
-					continue
-				end
-
-		local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
-		-- Create entity
-		local entity = Creator.createEntity({
-			Model = "13731304453",
-			Speed = 40,
-			DelayTime = 0,
-			HeightOffset = 0,
-			CanKill = true,
-			BreakLights = true,
-			FlickerLights = {
-				false,
-				80,
-			},
-			Cycles = {
-				Min = 1,
-				Max = 1,
-				WaitTime = 0.1,
-			},
-			CamShake = {
-				true,
-				{5, 15, 0.1, 1},
-				10,
-			},
-			Jumpscare = {
-				true, -- Enabled ('false' if you don't want jumpscare)
-				{
-					Image1 = "rbxassetid://11394027278", -- Image1 url
-					Image2 = "rbxassetid://11395249153", -- Image2 url
-					Shake = true,
-					Sound1 = {
-						10483790459, -- SoundId
-						{ Volume = 0.5 }, -- Sound properties
-					},
-					Sound2 = {
-						10483837590, -- SoundId
-						{ Volume = 0.5 }, -- Sound properties
-					},
-					Flashing = {
-						true, -- Enabled
-						Color3.fromRGB(48, 25, 52), -- Color
-					},
-					Tease = {
-						false, -- Enabled ('false' if you don't want tease)
-						Min = 1,
-						Max = 1,
-					},
-				},
-			},
-			CustomDialog = {"You died to who you call Silence","Stay as silent as possible when you suspect its coming, so you know when to hide!","Its slow, but hard to hear","so hide!" }
-		})
-
-		local cameraShaker = require(game.ReplicatedStorage.CameraShaker)
-		local camera = workspace.CurrentCamera
-
-		local camShake = cameraShaker.new(Enum.RenderPriority.Camera.Value, function(cf)
-			camera.CFrame = camera.CFrame * cf
-		end)
-		-----[[ Advanced ]]-----
-		entity.Debug.OnEntitySpawned = function(entityModel)
-
-		end
-
-		entity.Debug.OnEntityDespawned = function(entityModel)
-			if getgenv().death == false then
-				getgenv().Title = "Eyes Closed Ears open" --Title Here
-				getgenv().Description = "Stay silent or I wont be heard" --Description Here
-				getgenv().Reason = "Encounter Silence" --Reason Here
-				getgenv().BadgeId = 2129524598  --Replace Number with Your Badge ID
-				getgenv().Category = 10 --You can replace the Category or dont
-
-				local Unlock = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Lobby.RemoteListener.Modules.AchievementUnlock)
-				local Achievements = debug.getupvalue(Unlock, 1)
-				for i,v in pairs(require(game:GetService("ReplicatedStorage").Achievements)) do
-					v.Title = getgenv().Title
-					v.Desc = getgenv().Description
-					v.Reason = getgenv().Reason
-					v.BadgeId = getgenv().BadgeId
-					v.Category = getgenv().Category
-				end
-				Unlock(nil,"Join")
-			end
-		end
-
-		entity.Debug.OnEntityStartMoving = function(entityModel)
-
-		end
-
-		entity.Debug.OnEntityFinishedRebound = function(entityModel)
-
-		end
-
-		entity.Debug.OnDeath = function()
-			getgenv().death = true
-		end
-		---------------------------
-		-- Run the created entity
-		Creator.runEntity(entity)
-	end
-end)
-
-local Credits = Window:NewTab("Credits")
-local CreditSection = Credits:NewSection("Credits yayyy")
-CreditSection:NewButton("lol", "Main Modeler/Artist")
-CreditSection:NewButton("lol", "Main Coder")
-CreditSection:NewButton("lol ", "lol")
-CreditSection:NewButton("Make sure to check out the terms and agreements!!!!!")
-
-local Rules = Window:NewTab("Terms and conditions")
-local RulesSection = Rules:NewSection("Terms!!")
-RulesSection:NewButton("Rule 1:", "you may not reupload these our permission ")
-RulesSection:NewButton("Rule 2:", "Do not use to spread misinformation")
-RulesSection:NewButton("Rule 3 ", "Make sure to credit the creators!")
-RulesSection:NewButton("Rule 4:", " You may not use these in any unofficial GUI without our full permission")
-RulesSection:NewButton("Rule 5:", " Have fun!!!!")
+--ff
